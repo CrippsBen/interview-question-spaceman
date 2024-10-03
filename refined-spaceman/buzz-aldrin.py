@@ -72,7 +72,7 @@ def spaceman(secret_word):
     #main game loop
     while attempts > 0:
 
-        #check if the word is guessed
+        #check if the word has been guessed correctly
         if is_word_guessed(secret_word, letters_guessed):
             print("Congratulations, you won!")
             break
@@ -81,22 +81,26 @@ def spaceman(secret_word):
         print_image(attempts)
         print("Available letters:", get_available_letters(letters_guessed))
         guess = input("Please guess a letter: ").lower()
+        
         #ensure guess is a single letter
         if len(guess) != 1:
             print("OOPS! Please enter a single letter.")
             print("-------------")
             continue
+
         #ensure guess is a letter
         if not guess.isalpha():
             print("OOPS! Please enter an alphabetical letter.")
             print("-------------")
             continue
+
         #ensure guess is not a letter that has already been guessed
         if guess in letters_guessed:
             print("OOPS! You've already guessed that letter.")
             print("-------------")
             continue
 
+        #add the letter to the list of letters guessed
         letters_guessed.append(guess)    
 
         #check if the letter is in the secret word
